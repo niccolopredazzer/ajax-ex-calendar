@@ -1,9 +1,14 @@
+
 .top-calendar,
 .main-calendar {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.main-calendar {
+    width: 1800px;
 }
 
 #calendar li,
@@ -13,4 +18,36 @@
 
 .festivo {
     color: red;
+}
+
+.btn-navigation {
+     padding: 5px 20px;
+     border-radius: 5px;
+     background-color: purple;
+     color: white;
+     border: none;
+     cursor: pointer;
+}
+
+.btn-navigation:disabled{
+     background-color: #efefef;
+     cursor: not-allowed;
+}
+
+.giorni li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li {
+    border: 1px solid black;
+    list-style: none;
+    width: 200px;
+    height: 150px;
 }

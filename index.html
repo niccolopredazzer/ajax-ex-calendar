@@ -10,18 +10,31 @@
         <title>Calendar</title>
     </head>
     <body>
-        <div class="top-calendar">
-            <h1><span id="nome-mese">Gennaio</span> 2018</h1>
-            <div class="top-navigation">
-                <button class="btn-navigation mese-prec"><< Mese precedente</button>
-                <button class="btn-navigation mese-succ">Mese successivo >></button>
+        <div class="container">
+            <div class="top-calendar">
+                <h1><span id="nome-mese">Gennaio</span> 2018</h1>
+                <div class="top-navigation">
+                    <button class="btn-navigation mese-prec" disabled><< Mese precedente</button>
+                    <button class="btn-navigation mese-succ" disabled>Mese successivo >></button>
+                </div>
+            </div>
+            <div class="main-calendar">
+                <ul class="giorni">
+                    <li>Lunedì</li>
+                    <li>Martedì</li>
+                    <li>Mercoledì</li>
+                    <li>Giovedì</li>
+                    <li>Venerdì</li>
+                    <li>Sabato</li>
+                    <li>Domenica</li>
+                </ul>
+                <ul id="calendar">
+
+                </ul>
+
             </div>
         </div>
-        <div class="main-calendar">
-            <ul id="calendar">
 
-            </ul>
-        </div>
 
         <script id="calendar-template" type="text/x-handlebars-template">
             <li data-day="{{dataDay}}"> {{day}} </li>

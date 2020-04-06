@@ -7,22 +7,48 @@ $(document).ready(function () {
     // Tramite click stampare il mese successivo
 
     var dataIniziale = moment('2018-01-01');
-    stampaGiorniMese(dataIniziale);
-    stampaFestivi();
+stampaGiorniMese(dataIniziale); // Inizializzazione Calendario
 
-    $('.mese-succ').click(function () {
-       dataIniziale.add(1, 'month');
-       var meseCorrente = dataIniziale.month();
-       stampaGiorniMese(dataIniziale);
-       stampaFestivi(meseCorrente);
-   });
+var mese = dataIniziale.month();
+stampaFestivi(mese);
 
-   $('.mese-prec').click(function () {
-       dataIniziale.subtract(1, 'month');
-       var meseCorrente = dataIniziale.month();
-       stampaGiorniMese(dataIniziale);
-       stampaFestivi(meseCorrente);
-   });
+var limiteIniziale = moment('2018-01-01');
+var limiteFinale = moment('2018-12-31');
+var limiteMese = moment('2018-11-30');
+
+$('.mese-succ').prop('disabled', false);
+
+$('.mese-succ').click(function () {
+    $('.mese-prec').prop('disabled', false);
+    dataIniziale.add(1, 'month');
+
+    if (dataIniziale.isSameOrAfter(limiteFinale)) {
+        alert('Hai provato ad hackerarmi! :( ');
+    } else if (dataIniziale.isAfter(limiteMese)) {
+        var meseSelezionato = dataIniziale.month();
+        stampaGiorniMese(dataIniziale, meseSelezionato);
+        stampaFestivi(meseSelezionato);
+        $('.mese-succ').prop('disabled', true);
+    } else {
+        stampaGiorniMese(dataIniziale, meseSelezionato);
+        stampaFestivi(meseSelezionato);
+    }
+});
+
+$('.mese-prec').click(function () {
+    $('.mese-succ').prop('disabled', false);
+    if(dataIniziale.isSameOrBefore(limiteIniziale)){
+         alert('Hai provato ad hackerarmi! :( ');
+    } else {
+    dataIniziale.subtract(1, 'month');
+    var meseSelezionato = dataIniziale.month();
+    stampaGiorniMese(dataIniziale, meseSelezionato);
+    stampaFestivi(meseSelezionato);
+    if(dataIniziale.isSameOrBefore(limiteIniziale)) {
+       $('.mese-prec').prop('disabled', true);
+  }
+}
+});
 
     function stampaFestivi(mese) {
         $.ajax({
@@ -58,8 +84,8 @@ $(document).ready(function () {
                     day: i + ' ' + nomeMese,
                     dataDay: standardDay.format('YYYY-MM-DD')
                 }
-                var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
-                $('#calendar').append(templateFinale);
+                var templateUltimo = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
+                $('#calendar').append(templateUltimo);
                 standardDay.add(1, 'day');
             }
         } else {
