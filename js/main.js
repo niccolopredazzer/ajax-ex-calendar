@@ -77,7 +77,11 @@ $('.mese-prec').click(function () {
             var standardDay = meseDaStampare.clone();
             var giorniMese = meseDaStampare.daysInMonth();
             var nomeMese = meseDaStampare.format('MMMM');
-            $('#nome-mese').text(nomeMese); // Aggiorniamo il nome del mese in top calendar
+            $('#nome-mese').text(nomeMese);
+            var giornoCorrispettivo = moment(meseDaStampare).isoWeekday()
+            for (var i = 0; i < (giornoCorrispettivo - 1); i++) {
+                $('#calendar').append('<li></li>');
+            }
             for (var i = 1; i <= giorniMese; i++) {
                 // $('#calendar').append('<li>' + i + ' ' + nomeMese + '</li>');
                 var giornoDaInserire = {
