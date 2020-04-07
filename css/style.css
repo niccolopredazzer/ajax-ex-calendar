@@ -1,4 +1,9 @@
-
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .top-calendar,
 .main-calendar {
     display: flex;
@@ -8,7 +13,7 @@
 }
 
 .main-calendar {
-    width: 1800px;
+    width: 1600px;
 }
 
 #calendar li,
@@ -32,6 +37,11 @@
 .btn-navigation:disabled{
      background-color: #efefef;
      cursor: not-allowed;
+}
+
+.giorni {
+    position: relative;
+    right: 73px;
 }
 
 .giorni li {
